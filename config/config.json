@@ -1,0 +1,7 @@
+{
+  "network_name": "Galactic Banking Network",
+  "currency": "Galactic Credits",
+  "transaction_fee": 0.01,
+  "node_timeout": 300,
+  "security_level": "EXTREME"
+}
