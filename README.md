@@ -1,3 +1,10 @@
+[![SWIFT](https://img.shields.io/badge/SWIFT-Developer%20Portal-blue.svg?logo=swift&logoColor=white)](https://developer.swift.com/)
+[![ISO 20022](https://img.shields.io/badge/ISO%2020022-Repository-green.svg?logo=iso&logoColor=white)](https://www.iso20022.org/)
+[![FIX](https://img.shields.io/badge/FIX-Repository-orange.svg?logo=fix&logoColor=white)](https://www.fixtrading.org/)
+[![BIS CPMI](https://img.shields.io/badge/BIS%20CPMI-Repository-yellow.svg?logo=bis&logoColor=white)](https://www.bis.org/cpmi/)
+[![FpML](https://img.shields.io/badge/FpML-Repository-purple.svg?logo=fpm&logoColor=white)](https://www.fpml.org/)
+[![XBRL](https://img.shields.io/badge/XBRL-Repository-red.svg?logo=xbrl&logoColor=white)](https://www.xbrl.org/)
+
 <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/KOSASIH/Galactic-Banking-Network">Galactic Banking Network ( GBP ) </a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.linkedin.com/in/kosasih-81b46b5a">KOSASIH </a> is licensed under <a href="https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Creative Commons Attribution 4.0 International<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""></a></p>
 
 # Galactic-Banking-Network
