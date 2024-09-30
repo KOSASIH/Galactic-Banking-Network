@@ -10,6 +10,13 @@
 [![FSB](https://img.shields.io/badge/FSB-Data%20Portal-yellow.svg?logo=fsb&logoColor=white)](https://www.fsb.org/data/)
 [![IOSCO](https://img.shields.io/badge/IOSCO-Data%20Portal-purple.svg?logo=iosco&logoColor=white)](https://www.iosco.org/data/)
 [![CPMI](https://img.shields.io/badge/CPMI-Data%20Portal-red.svg?logo=cpmi&logoColor=white)](https://www.bis.org/cpmi/data/)
+[![ECB](https://img.shields.io/badge/ECB-Data%20Portal-blue.svg?logo=ecb&logoColor=white)](https://sdw.ecb.europa.eu/)
+[![BoE](https://img.shields.io/badge/BoE-Data%20Portal-green.svg?logo=boe&logoColor=white)](https://www.bankofengland.co.uk/data/)
+[![Fed](https://img.shields.io/badge/Fed-Data%20Portal-orange.svg?logo=fed&logoColor=white)](https://fred.stlouisfed.org/)
+[![IMF](https://img.shields.io/badge/IMF-Data%20Portal-yellow.svg?logo=imf&logoColor=white)](https://data.imf.org/)
+[![ADB](https://img.shields.io/badge/ADB-Data%20Portal-red.svg?logo=adb&logoColor=white)](https://data.adb.org/)
+[![ESMA](https://img.shields.io/badge/ESMA-Data%20Portal-blue.svg?logo=esma&logoColor=white)](https://www.esma.europa.eu/data/)
+[![FSB](https://img.shields.io/badge/FSB-Data%20Portal-green.svg?logo=fsb&logoColor=white)](https://www.fsb.org/data/)
 
 <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/KOSASIH/Galactic-Banking-Network">Galactic Banking Network ( GBP ) </a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.linkedin.com/in/kosasih-81b46b5a">KOSASIH </a> is licensed under <a href="https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Creative Commons Attribution 4.0 International<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""></a></p>
 
