@@ -1,40 +1,73 @@
-import hashlib
-from cryptography.hazmat.primitives import serialization
-from cryptography.hazmat.primitives.asymmetric import rsa
-from cryptography.hazmat.backends import default_backend
+import os
+import json
+from pymongo import MongoClient
+from bson import ObjectId
 
 class GalacticDataStorage:
-    def __init__(self, node_id, private_key, network_config):
-        self.node_id = node_id
-        self.private_key = private_key
-        self.network_config = network_config
-        self.data_storage = {}
+    def __init__(self, db_name, collection_name):
+        self.db_name = db_name
+        self.collection_name = collection_name
+        self.client = MongoClient("mongodb://localhost:27017/")
+        self.db = self.client[db_name]
+        self.collection = self.db[collection_name]
 
-    def store_data(self, data):
-        # Store data in the galactic data storage
-        data_id = hashlib.sha256(data.encode()).hexdigest()
-        self.data_storage[data_id] = data
-        return data_id
+    def insert_data(self, data):
+        self.collection.insert_one(data)
 
-    def retrieve_data(self, data_id):
-        # Retrieve data from the galactic data storage
-        if data_id in self.data_storage:
-            return self.data_storage[data_id]
-        else:
-            return None
+    def get_data(self, query):
+        return self.collection.find(query)
 
-    def update_data(self, data_id, new_data):
-        # Update data in the galactic data storage
-        if data_id in self.data_storage:
-            self.data_storage[data_id] = new_data
-            return True
-        else:
-            return False
+    def update_data(self, query, update):
+        self.collection.update_one(query, update)
 
-    def delete_data(self, data_id):
-        # Delete data from the galactic data storage
-        if data_id in self.data_storage:
-            del self.data_storage[data_id]
-            return True
-        else:
-            return False
+    def delete_data(self, query):
+        self.collection.delete_one(query)
+
+    def close_connection(self):
+        self.client.close()
+
+class GalacticFileStorage:
+    def __init__(self, file_path):
+        self.file_path = file_path
+
+    def write_data(self, data):
+        with open(self.file_path, "w") as f:
+            json.dump(data, f)
+
+    def read_data(self):
+        with open(self.file_path, "r") as f:
+            return json.load(f)
+
+def main():
+    # MongoDB storage
+    db_name = "galactic_db"
+    collection_name = "galactic_collection"
+    gds = GalacticDataStorage(db_name, collection_name)
+
+    data = {"galaxy_type": "Spiral", "distance": 100, "velocity": 200}
+    gds.insert_data(data)
+
+    query = {"galaxy_type": "Spiral"}
+    results = gds.get_data(query)
+    for result in results:
+        print(result)
+
+    update = {"$set": {"distance": 150}}
+    gds.update_data(query, update)
+
+    gds.delete_data(query)
+
+    gds.close_connection()
+
+    # File storage
+    file_path = "galactic_data.json"
+    gfs = GalacticFileStorage(file_path)
+
+    data = {"galaxy_type": "Elliptical", "distance": 50, "velocity": 100}
+    gfs.write_data(data)
+
+    data = gfs.read_data()
+    print(data)
+
+if __name__ == "__main__":
+    main()
