@@ -1,36 +1,108 @@
+import os
+import hashlib
+import json
+from stellar_sdk import Server, Keypair, TransactionBuilder, Network
+from stellar_sdk.horizon import Horizon
+import pandas as pd
 import networkx as nx
-from cryptography.hazmat.primitives import serialization
-from cryptography.hazmat.primitives.asymmetric import rsa
-from cryptography.hazmat.backends import default_backend
+import matplotlib.pyplot as plt
 
 class StellarNetworkAnalyzer:
-    def __init__(self, node_id, private_key, network_config):
-        self.node_id = node_id
-        self.private_key = private_key
-        self.network_config = network_config
-        self.network_graph = nx.Graph()
+  def __init__(self, network_passphrase, horizon_url):
+    self.network_passphrase = network_passphrase
+    self.horizon_url = horizon_url
+    self.server = Server(horizon_url)
+    self.horizon = Horizon(horizon_url)
 
-    def build_network_graph(self):
-        # Build a graph representation of the Stellar network
-        for node in self.network_config['nodes']:
-            self.network_graph.add_node(node['node_id'])
-        for edge in self.network_config['edges']:
-            self.network_graph.add_edge(edge['node_id1'], edge['node_id2'])
+  def create_keypair(self):
+    keypair = Keypair.random()
+    return keypair
 
-    def analyze_network_topology(self):
-        # Analyze the topology of the Stellar network
-        # Calculate network metrics such as centrality, clustering coefficient, and shortest paths
-        metrics = {}
-        metrics['centrality'] = nx.degree_centrality(self.network_graph)
-        metrics['clustering_coefficient'] = nx.clustering(self.network_graph)
-        metrics['shortest_paths'] = nx.shortest_path_length(self.network_graph)
-        return metrics
+  def create_account(self, keypair):
+    account = self.server.load_account(keypair.public_key)
+    if not account:
+      transaction = TransactionBuilder(
+        source_account=keypair.public_key,
+        network_passphrase=self.network_passphrase,
+        base_fee=100
+      ).append_create_account_op(
+        destination=keypair.public_key,
+        starting_balance="1000"
+      ).build()
+      transaction.sign(keypair)
+      response = self.server.submit_transaction(transaction)
+      print(f"Account created: {response}")
 
-    def detect_network_anomalies(self):
-        # Detect anomalies in the Stellar network
-        # Identify nodes with unusual behavior or connectivity patterns
-        anomalies = []
-        for node in self.network_graph.nodes():
-            if node_degree(node) > 2 * average_degree(self.network_graph):
-                anomalies.append(node)
-        return anomalies
+  def send_asset(self, source_keypair, destination_keypair, asset_code, amount):
+    transaction = TransactionBuilder(
+      source_account=source_keypair.public_key,
+      network_passphrase=self.network_passphrase,
+      base_fee=100
+    ).append_payment_op(
+      destination=destination_keypair.public_key,
+      asset_code=asset_code,
+      amount=amount
+    ).build()
+    transaction.sign(source_keypair)
+    response = self.server.submit_transaction(transaction)
+    print(f"Asset sent: {response}")
+
+  def get_account_balance(self, keypair):
+    account = self.server.load_account(keypair.public_key)
+    balance = account.balances[0].balance
+    print(f"Account balance: {balance}")
+
+  def collect_data(self):
+    # Collect data from the Stellar network
+    data = []
+    for account in self.server.accounts().call():
+      data.append({
+        "account_id": account.id,
+        "balance": account.balances[0].balance,
+        "sequence": account.sequence,
+        "last_modified_ledger": account.last_modified_ledger
+      })
+    return pd.DataFrame(data)
+
+  def build_network(self, data):
+    # Build a network graph using the collected data
+    G = nx.Graph()
+    for index, row in data.iterrows():
+      G.add_node(row["account_id"])
+      for other_index, other_row in data.iterrows():
+        if row["account_id"] != other_row["account_id"]:
+          G.add_edge(row["account_id"], other_row["account_id"])
+    return G
+
+  def analyze_network(self, G):
+    # Analyze the network graph
+    print(f"Number of nodes: {G.number_of_nodes()}")
+    print(f"Number of edges: {G.number_of_edges()}")
+    print(f"Average degree: {nx.degree(G).values().mean()}")
+    print(f"Clustering coefficient: {nx.clustering(G).values().mean()}")
+
+  def visualize_network(self, G):
+    # Visualize the network graph
+    pos = nx.spring_layout(G)
+    nx.draw_networkx_nodes(G, pos, node_size=10, node_color="lightblue")
+    nx.draw_networkx_edges(G, pos, width=1, edge_color="gray")
+    nx.draw_networkx_labels(G, pos, font_size=10)
+    plt.show()
+
+# Example usage:
+if __name__ == '__main__':
+  network_passphrase = "Test SDF Network ; September 2015"
+  horizon_url = "https://horizon-testnet.stellar.org"
+
+  stellar_network_analyzer = StellarNetworkAnalyzer(network_passphrase, horizon_url)
+
+  source_keypair = stellar_network_analyzer.create_keypair()
+  destination_keypair = stellar_network_analyzer.create_keypair()
+
+  stellar_network_analyzer.create_account(source_keypair)
+  stellar_network_analyzer.create_account(destination_keypair)
+
+  data = stellar_network_analyzer.collect_data()
+  G = stellar_network_analyzer.build_network(data)
+  stellar_network_analyzer.analyze_network(G)
+  stellar_network_analyzer.visualize_network(G)
