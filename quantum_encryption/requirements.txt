@@ -1,0 +1,6 @@
+# requirements.txt
+
+qiskit
+numpy
+hashlib
+hmac
