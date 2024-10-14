@@ -1,60 +1,89 @@
 # user_database.py
 
-import sqlite3
+from user_data.user_data import UserData
 
 class UserDatabase:
-    def __init__(self, database_name):
-        self.database_name = database_name
+    def __init__(self):
+        # Initialize the user data handler
+        self.user_data_handler = UserData()
 
-    def create_database(self):
+    def add_user(self, user_data):
         """
-        Create a user database.
-
-        Returns:
-        - database: User database.
-        """
-        # Implement database creation algorithm here
-        conn = sqlite3.connect(self.database_name)
-        c = conn.cursor()
-        c.execute("""CREATE TABLE users (
-            id INTEGER PRIMARY KEY,
-            username TEXT,
-            brain_signals BLOB
-        )""")
-        conn.commit()
-        conn.close()
-
-    def add_user(self, user):
-        """
-        Add a user to the database.
+        Add a new user to the database.
 
         Parameters:
-        - user: User to add.
+        - user_data: User data to add (must be bytes or string).
 
         Returns:
-        - added_user: Added user.
+        - stored_user_data: Stored user data.
         """
-        # Implement user addition algorithm here
-        conn = sqlite3.connect(self.database_name)
-        c = conn.cursor()
-        c.execute("INSERT INTO users (username, brain_signals) VALUES (?, ?)", (user.username, user.brain_signals))
-        conn.commit()
-        conn.close()
+        # Encrypt user data before storing
+        encrypted_user_data = self.user_data_handler.encrypt_user_data(user_data)
+        # Store encrypted user data in the database
+        # For demonstration purposes, we'll just store it in a dictionary
+        self.database = {}
+        self.database[user_data] = encrypted_user_data
+        return encrypted_user_data
 
-    def get_user(self, username):
+    def get_user(self, user_id):
         """
-        Get a user from the database.
+        Retrieve a user from the database.
 
         Parameters:
-        - username: Username of the user to get.
+        - user_id: ID of the user to retrieve.
 
         Returns:
-        - user: Retrieved user.
+        - user_data: Retrieved user data (as string).
         """
-        # Implement user retrieval algorithm here
-        conn = sqlite3.connect(self.database_name)
-        c = conn.cursor()
-        c.execute("SELECT * FROM users WHERE username=?", (username,))
-        user = c.fetchone()
-        conn.close()
-        return user
+        # Retrieve encrypted user data from the database
+        encrypted_user_data = self.database.get(user_id)
+        if encrypted_user_data:
+            # Decrypt stored user data
+            decrypted_user_data = self.user_data_handler.decrypt_user_data(encrypted_user_data)
+            return decrypted_user_data
+        else:
+            return None
+
+    def update_user(self, user_id, updated_user_data):
+        """
+        Update an existing user in the database.
+
+        Parameters:
+        - user_id: ID of the user to update.
+        - updated_user_data: Updated user data (must be bytes or string).
+
+        Returns:
+        - updated_user_data: Updated user data.
+        """
+        # Retrieve encrypted user data from the database
+        encrypted_user_data = self.database.get(user_id)
+        if encrypted_user_data:
+            # Decrypt stored user data
+            decrypted_user_data = self.user_data_handler.decrypt_user_data(encrypted_user_data)
+            # Update user data
+            updated_user_data = self.user_data_handler.encrypt_user_data(updated_user_data)
+            self.database[user_id] = updated_user_data
+            return updated_user_data
+        else:
+            return None
+
+    def delete_user(self, user_id):
+        """
+        Delete a user from the database.
+
+        Parameters:
+        - user_id: ID of the user to delete.
+
+        Returns:
+        - deleted_user_data: Deleted user data (as string).
+        """
+        # Retrieve encrypted user data from the database
+        encrypted_user_data = self.database.get(user_id)
+        if encrypted_user_data:
+            # Decrypt stored user data
+            decrypted_user_data = self.user_data_handler.decrypt_user_data(encrypted_user_data)
+            # Delete user data from the database
+            del self.database[user_id]
+            return decrypted_user_data
+        else:
+            return None
