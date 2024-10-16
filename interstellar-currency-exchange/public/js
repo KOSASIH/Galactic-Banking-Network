@@ -1,1 +1,74 @@
+// script.js
 
+// Import dependencies
+import axios from 'axios';
+import Swal from 'sweetalert2';
+
+// Set API endpoint URL
+const API_URL = 'https://api.interstellarcurrencyexchange.com';
+
+// Set API token
+const API_TOKEN = 'YOUR_API_TOKEN';
+
+// Set currency exchange rates
+let exchangeRates = {};
+
+// Function to get currency exchange rates
+async function getExchangeRates() {
+  try {
+    const response = await axios.get(`${API_URL}/api/exchange-rates`, {
+      headers: {
+        Authorization: `Bearer ${API_TOKEN}`,
+      },
+    });
+    exchangeRates = response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Function to convert currency
+function convertCurrency(fromCurrency, toCurrency, amount) {
+  const exchangeRate = exchangeRates[fromCurrency][toCurrency];
+  const convertedAmount = amount * exchangeRate;
+  return convertedAmount;
+}
+
+// Function to handle transaction submission
+async function handleTransactionSubmission(event) {
+  event.preventDefault();
+  const fromCurrency = document.getElementById('from-currency').value;
+  const toCurrency = document.getElementById('to-currency').value;
+  const amount = parseFloat(document.getElementById('amount').value);
+  const convertedAmount = convertCurrency(fromCurrency, toCurrency, amount);
+  try {
+    const response = await axios.post(`${API_URL}/api/transactions`, {
+      fromCurrency,
+      toCurrency,
+      amount,
+      convertedAmount,
+    }, {
+      headers: {
+        Authorization: `Bearer ${API_TOKEN}`,
+      },
+    });
+    Swal.fire({
+      title: 'Transaction Successful!',
+      text: `You have successfully exchanged ${amount} ${fromCurrency} for ${convertedAmount} ${toCurrency}.`,
+      icon: 'success',
+    });
+  } catch (error) {
+    console.error(error);
+    Swal.fire({
+      title: 'Error!',
+      text: 'An error occurred while processing your transaction.',
+      icon: 'error',
+    });
+  }
+}
+
+// Add event listener to transaction form submission
+document.getElementById('transaction-form').addEventListener('submit', handleTransactionSubmission);
+
+// Initialize currency exchange rates
+getExchangeRates();
