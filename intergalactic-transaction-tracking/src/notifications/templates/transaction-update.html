@@ -1,0 +1,65 @@
+<!-- notifications/templates/transaction-update.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Update Notification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #555;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #777;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 15px;
+            margin-top: 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Transaction Update Notification</h1>
+        <p>Dear {{recipientName}},</p>
+        <p>Your transaction with ID <strong>{{transactionId}}</strong> has been updated.</p>
+        <p>Status: <strong>{{status}}</strong></p>
+        <p>Amount: <strong>{{amount}} {{currency}}</strong></p>
+        <p>Planet: <strong>{{planet}}</strong></p>
+        <p>If you have any questions, feel free to contact our support team.</p>
+        <a href="{{transactionLink}}" class="button">View Transaction</a>
+        <div class="footer">
+            <p>Thank you for using our service!</p>
+            <p>The Intergalactic Transaction Tracking Team</p>
+        </div>
+    </div>
+</body>
+</html>
