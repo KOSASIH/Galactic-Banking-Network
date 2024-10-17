@@ -1,0 +1,66 @@
+{
+  "config": {
+    "chainId": 12345,
+    "homesteadBlock": 0,
+    "eip155Block": 0,
+    "eip158Block": 0,
+    "byzantiumBlock": 0,
+    "constantinopleBlock": 0,
+    "petersburgBlock": 0,
+    "istanbulBlock": 0,
+    "berlinBlock": 0,
+    "londonBlock": 0,
+    "arrowGlacierBlock": 0,
+    "mergeNets": [],
+    "clique": {
+      "period": 15,
+      "epoch": 30000
+    },
+    "ethash": {}
+  },
+  "alloc": {
+    "0x1234567890abcdef1234567890abcdef12345678": {
+      "balance": "1000000000000000000000000" // 1 million tokens for the main treasury
+    },
+    "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd": {
+      "balance": "500000000000000000000000" // 500k tokens for development fund
+    },
+    "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef": {
+      "balance": "100000000000000000000000" // 100k tokens for community rewards
+    }
+  },
+  "nonce": "0x0000000000000000",
+  "timestamp": "0x5f4e3b2c", // Example timestamp
+  "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+  "gasLimit": "0x2fefd8", // 31,999,999 gas limit
+  "difficulty": "0x20000", // Difficulty for mining
+  "mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+  "coinbase": "0x0000000000000000000000000000000000000000",
+  "extraData": "0x00", // Extra data for the block
+  "baseFeePerGas": "0x3b9aca00", // Base fee per gas for EIP-1559
+  "networkId": 12345,
+  "chain": "galactic-banking-network",
+  "version": "1.0.0",
+  "validators": [
+    {
+      "address": "0x1234567890abcdef1234567890abcdef12345678",
+      "name": "Validator One",
+      "stake": "100000000000000000000000" // 100k tokens staked
+    },
+    {
+      "address": "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd",
+      "name": "Validator Two",
+      "stake": "100000000000000000000000" // 100k tokens staked
+    }
+  ],
+  "features": {
+    "smartContracts": true,
+    "decentralizedStorage": true,
+    "multiSigWallets": true,
+    "interoperability": true,
+    "privacyFeatures": {
+      "zkSnarks": true,
+      "ringSignatures": false
+    }
+  }
+  }
