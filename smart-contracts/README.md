@@ -14,18 +14,21 @@ The **Galactic Banking Network** is a decentralized platform designed to facilit
 ## Installation
 
 1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/KOSASIH/Galactic-Banking-Network.git
-   cd Galactic-Banking-Network/smart-contracts
-   ```
+ 
+  ```bash
+ 1. git clone https://github.com/KOSASIH/Galactic-Banking-Network.git
+ 2. cd Galactic-Banking-Network/smart-contracts
+  ```
 
-2. Install dependencies:
+2. **Install dependencies:**
 
 ```
 1. npm install
 ```
 
-3. Set up environment variables: Create a .env file and add: 
+3. **Set up environment variables:**
+
+Create a .env file and add: 
 
 ```plaintext
 1. APP_NAME=Galactic Banking Network
@@ -47,13 +50,13 @@ The **Galactic Banking Network** is a decentralized platform designed to facilit
 
 # Usage
 
-To start the application, run:
+1. **To start the application, run:**
 
 ```bash
 1. npm start
 ```
 
-For development mode:
+2. **For development mode:**
 
 ```bash
 1. npm run dev
@@ -61,7 +64,7 @@ For development mode:
 
 # Testing
 
-To run tests:
+1. **To run tests:**
 
 ```bash
 1. npm test
@@ -69,7 +72,7 @@ To run tests:
 
 # Deployment
 
-To deploy the smart contracts:
+1. **To deploy the smart contracts:**
 
 ```bash
 1. npm run deploy
