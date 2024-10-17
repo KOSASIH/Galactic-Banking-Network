@@ -1,0 +1,29 @@
+{
+  "name": "galactic-banking-network",
+  "version": "1.0.0",
+  "description": "Smart Contracts for Trade Agreements in the Galactic Banking Network.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "jest",
+    "lint": "eslint .",
+    "deploy": "truffle migrate --network development",
+    "compile": "truffle compile"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "web3": "^1.6.1", // For interacting with Ethereum blockchain
+    "truffle": "^5.4.0", // For smart contract development
+    "axios": "^0.21.1", // For making HTTP requests
+    "winston": "^3.3.3" // For logging
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "jest": "^27.0.6",
+    "eslint": "^7.32.0",
+    "ganache-cli": "^6.12.2" // For local blockchain testing
+  },
+  "author": "KOSASIH",
+  "license": "Apache 2.0"
+}
