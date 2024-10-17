@@ -1,0 +1,36 @@
+{
+  "name": "virtual-reality-banking-interface",
+  "version": "1.0.0",
+  "description": "A high-tech virtual reality banking interface for managing accounts and transactions.",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack serve --mode development",
+    "build": "webpack --mode production",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "keywords": [
+    "VR",
+    "banking",
+    "finance",
+    "interface",
+    "react"
+  ],
+  "author": "KOSASIH",
+  "license": "Apache 2.0",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "three": "^0.126.0",
+    "@testing-library/react": "^11.2.7"
+  },
+  "devDependencies": {
+    "jest": "^26.6.0",
+    "babel-jest": "^26.6.0",
+    "eslint": "^7.14.0",
+    "webpack": "^5.11.0",
+    "webpack-cli": "^4.3.1",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
