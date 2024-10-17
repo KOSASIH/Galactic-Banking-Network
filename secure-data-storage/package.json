@@ -1,0 +1,41 @@
+{
+  "name": "galactic-data-management",
+  "version": "1.0.0",
+  "description": "A high-tech application for managing data with compression and decompression features.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"No tests specified\" && exit 0",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "keywords": [
+    "data",
+    "management",
+    "compression",
+    "decompression",
+    "storage",
+    "galactic"
+  ],
+  "author": "Intergalactic Tech Support Specialist",
+  "license": "MIT",
+  "dependencies": {
+    "uuid": "^9.0.0",
+    "zlib": "^1.0.5"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "prettier": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KOSASIH/galactic-data-management.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KOSASIH/galactic-data-management/issues"
+  },
+  "homepage": "https://github.com/KOSASIH/galactic-data-management#readme"
+}
