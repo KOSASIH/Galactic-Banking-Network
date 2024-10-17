@@ -50,3 +50,24 @@ To run tests, use:
    1. npm test
    ```
 
+# Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request.
+
+# License
+
+This project is licensed under the Apache 2.0 License.
+
+
+### Key Features of `README.md`
+
+- **Project Overview**: Provides a brief description of the application and its features.
+- **Technologies Used**: Lists the main technologies and libraries used in the project.
+- **Installation Instructions**: Step-by-step guide on how to clone the repository and install dependencies.
+- **Usage Instructions**: Commands for starting the development server, building the project, and running tests.
+- **Contribution Guidelines**: Encourages contributions and provides a way for others to get involved.
+- **License Information**: States the licensing for the project.
+
+### Summary
+
+The `package.json` and `README.md` files provide essential information about the **Virtual Reality Banking Interface** project, including its configuration, dependencies, and usage iinstructions
