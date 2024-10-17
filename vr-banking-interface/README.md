@@ -21,7 +21,7 @@ A high-tech virtual reality banking interface for managing accounts and transact
 1. Clone the repository:
 
 ```bash
-1. git clone https://github.com/yourusername/virtual-reality-banking-interface.git
+1. git clone https://github.com/KOSASIH/virtual-reality-banking-interface.git
 2. cd virtual-reality-banking-interface
 ```
 
